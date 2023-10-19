@@ -547,7 +547,7 @@ df1$psyInd <- df1$psycIndSums/df1$psyIndCounts
 # Convert in long format and select needed variables
 df_gr_full <- df1 %>%
   dplyr::select(
-    V1, PID, OpsFact, CPFact, TumATC , age, Date_Out, SexFact, NSARFact,
+    V1,  PID, OpsFact, CPFact, TumATC , age, Date_Out, SexFact, NSARFact,
     Stay_length, Medic_leaving_nbr, Risk.of.falling.006, rehosp_num, OpsClass,
     Paracet, Metamiz, Gaba, Destination_rec, mme, TCA, SNRI, Carba, MRel,
     HypFact, RAASFact, DiurFact, ChronInf, ChronInflamma, RenalDis, 
@@ -556,7 +556,7 @@ df_gr_full <- df1 %>%
     Cortico, PepUlc, Dementia, Painmeds
                                     ) %>%
   group_by(
-    V1, PID, Date_Out, SexFact, age, rehosp_num,  CPFact, Stay_length,
+    V1, PID,  Date_Out, SexFact, age, rehosp_num,  CPFact, Stay_length,
     Medic_leaving_nbr, Risk.of.falling.006, Destination_rec, funcInd, psyInd
     ) %>%
   summarise(
@@ -581,7 +581,7 @@ df_gr_full <- df1 %>%
 
 
 names(df_gr_full) <- c(
-  "V1", "PID","Date","Sex", "age", "Rehosp", "CPFact" ,"Stay_length", "MedTot", "FallRisk",
+  "V1", "PID" ,"Date","Sex", "age", "Rehosp", "CPFact" ,"Stay_length", "MedTot", "FallRisk",
   "Destination", "funcInd", "psyInd", "OpsFact", "NSARFact", "Paracet", "Metamiz", "Gaba","TCA", "SNRI",
   "Carba", "MRel", "OpsClass","mme", "Hypnotics", "RAAS", "Diur", "Infect", "Inflam",
   "RenalDis", "EndRenDis", "Diabetes", "PulDis", "LiverF", "Transplant", "NeurDis",
@@ -715,10 +715,22 @@ df_gr_full$NSARPep <- as.numeric(
 
 # Kaplan Meyer Curve
 df_cncp <- df_gr_full[df_gr_full$CNCPFact == 1,]
+df_cncp$Read90 <- as.numeric(df_cncp$TT_Rehosp <= 90)
 surv.obj <- survival::Surv(df_cncp$TT_Rehosp, df_cncp$Censoring)
 survfit2(Surv(TT_Rehosp, Censoring) ~ 1, data = df_cncp) %>%
   ggsurvfit()
 
+# Events for 30, 60 and 90 days
+survfit(Surv(TT_Rehosp, Censoring) ~ 1, data = df_cncp)
 
 # Sample size for 30 day readmission
-pmsampsize(type = "b", rsquared = 0.1, parameters = 20, prevalence = 0.04)
+pmsampsize(type = "b", cstatistic = 0.65, parameters = 2, prevalence = 0.04)
+
+# Sample size for 60 day radmission
+pmsampsize(type = "b", cstatistic = 0.65, parameters = 6, prevalence = 0.108)
+
+# Sample size for 90 day readmission
+pmsampsize(type = "b", cstatistic = 0.65, parameters = 8, prevalence = 0.155)
+
+# Sample size for survival analysis
+pmsampsize(type = "b", cstatistic = 0.65, parameters = 15, prevalence = 0.43)
