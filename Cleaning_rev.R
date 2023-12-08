@@ -544,6 +544,58 @@ df1$psyIndCounts <- df1 %>% select(starts_with("Psy_")) %>% is.na() %>% rowSums(
 df1$psyIndCounts <-5 - df1$psyIndCounts
 df1$psyInd <- df1$psycIndSums/df1$psyIndCounts
 
+
+## anticholinergic burden
+df1$ACBcalc <- NA
+# score 1
+df1$ACBcalc[which(df1$ATCFull == "N05BA12" | df1$ATCFull == "C07AB03"  | df1$ATCFull == "N06AX12" |
+                    df1$ATCFull == "C09AA01" | df1$ATCFull == "C09BA01" | df1$ATCFull == "N05BA05" |
+                    df1$ATCFull == "R05DA04" | df1$ATCFull == "N02AJ06" | df1$ATCFull == "N05BA01" |
+                    df1$ATCFull == "M04AC01" | df1$ATCFull == "C01AA05" | df1$ATCFull == "N02AB03" |
+                    df1$ATCFull == "N06AB08" | df1$ATCFull == "C03CA01" | df1$ATCFull == "C03EB01" |
+                    df1$ATCFull == "A10BD07" | df1$ATCFull == "H02AB09" | df1$ATCFull == "C01DA08" |
+                    df1$ATCFull == "A07DA03" | df1$ATCFull == "C07AB02" | df1$ATCFull == "C07FB02" |
+                    df1$ATCFull == "N02AA01" | df1$ATCFull == "H02AB06" | df1$ATCFull == "H02AB07" |
+                    df1$ATCFull == "A02BA02" | df1$ATCFull == "N06AX05" | df1$ATCFull == "N05AX12" |
+                    df1$ATCFull == "M03BX01" | df1$ATCFull == "C09AA07" | df1$ATCFull == "C09BA07" |
+                    df1$ATCFull == "A06AB02" | df1$ATCFull == "R06AE07" | df1$ATCFull == "A03CA02" |
+                    df1$ATCFull == "L04AD01" | df1$ATCFull == "N06AB04" | df1$ATCFull == "J01FF01" |
+                    df1$ATCFull == "N03AE01" | df1$ATCFull == "R06AX27" | df1$ATCFull == "H02AB02" |
+                    df1$ATCFull == "C08DB01" | df1$ATCFull == "R06AB03" | df1$ATCFull == "R05DA09" |
+                    df1$ATCFull == "A03FA03" | df1$ATCFull == "N06AB10" | df1$ATCFull == "M01AH05" |
+                    df1$ATCFull == "R06AX26" | df1$ATCFull == "N05CD03" | df1$ATCFull == "N06AB03" |
+                    df1$ATCFull == "N05CD01" | df1$ATCFull == "J01GB03" | df1$ATCFull == "M01AB15" |
+                    df1$ATCFull == "A02BC03" | df1$ATCFull == "R06AE09" | df1$ATCFull == "N04BA02" |
+                    df1$ATCFull == "N05AN01" | df1$ATCFull == "N05BA06" | df1$ATCFull == "A10BA02" |
+                    df1$ATCFull == "A10BD08" | df1$ATCFull == "A10BD07" | df1$ATCFull == "L04AX03" |
+                    df1$ATCFull == "H02AB04" | df1$ATCFull == "A03FA01" | df1$ATCFull == "N05CD08" |
+                    df1$ATCFull == "N06AX11" | df1$ATCFull == "C08CA05" | df1$ATCFull == "N05BA04" |
+                    df1$ATCFull == "N02AA05" | df1$ATCFull == "N02AA55" | df1$ATCFull == "N05AX13" |
+                    df1$ATCFull == "J01CR05" | df1$ATCFull == "N04BC05" | df1$ATCFull == "N05AX08" |
+                    df1$ATCFull == "N04BC09" | df1$ATCFull == "N06AB06" | df1$ATCFull == "N02CC01" |
+                    df1$ATCFull == "N05CD07" | df1$ATCFull == "N05CD05" | df1$ATCFull == "N03AG01" |
+                    df1$ATCFull == "J01XA01" | df1$ATCFull == "N06AX16" | df1$ATCFull == "N02CC03")] <- 1
+
+# score 2
+df1$ACBcalc[which(df1$ATCFull == "C07CB03" | df1$ATCFull == "C07FB03" | df1$ATCFull == "N04BB01" |
+                    df1$ATCFull == "N04BA03" | df1$ATCFull == "R05FA02" | df1$ATCFull == "N05DA01" |
+                    df1$ATCFull == "C07FB03" | df1$ATCFull == "N06AA05" | df1$ATCFull == "N03AF02" |
+                    df1$ATCFull == "N02AB02" | df1$ATCFull == "N02AX02" | df1$ATCFull == "N02AJ13")] <- 2
+
+# score 3
+df1$ACBcalc[which(df1$ATCFull == "N06AA09" | df1$ATCFull == "A03BA01" | df1$ATCFull == "R06AA04" | 
+                    df1$ATCFull == "N06AA04" | df1$ATCFull == "N05AH02" | df1$ATCFull == "G04BD10" |
+                    df1$ATCFull == "R06AA02" | df1$ATCFull == "R06AA09" | df1$ATCFull == "G04BD11" |
+                    df1$ATCFull == "G04BD02" | df1$ATCFull == "N05BB01" | df1$ATCFull == "N05AA02" |
+                    df1$ATCFull == "N05AH03" | df1$ATCFull == "G04BD04" | df1$ATCFull == "N06AB05" | 
+                    df1$ATCFull == "N04AA04" | df1$ATCFull == "N05AH04" | df1$ATCFull == "A03BB01" | 
+                    df1$ATCFull == "G04BD08" | df1$ATCFull == "M03BX02" | df1$ATCFull == "G04BD07" |
+                    df1$ATCFull == "N06AA06" | df1$ATCFull == "G04BD09")] <- 3
+
+# score 4 
+df1$ACBcalc[which(df1$ATCFull == "N06CA01")] <- 4
+
+df1$ACBcalc[is.na(df1$ACBcalc)] <- 0
 # Convert in long format and select needed variables
 df_gr_full <- df1 %>%
   dplyr::select(
@@ -553,11 +605,11 @@ df_gr_full <- df1 %>%
     HypFact, RAASFact, DiurFact, ChronInf, ChronInflamma, RenalDis, 
     EndRenDis, diabetes, PulDis, LiverF, OrgTrans, NeurDis, CVDis, 
     ThyrDis, Gout, PsychDis, funcInd, psyInd, AntiCoa, SSRI,
-    Cortico, PepUlc, Dementia, Painmeds
+    Cortico, PepUlc, Dementia, Painmeds, ACBcalc, rehosp30
                                     ) %>%
   group_by(
     V1, PID,  Date_Out, SexFact, age, rehosp_num,  CPFact, Stay_length,
-    Medic_leaving_nbr, Risk.of.falling.006, Destination_rec, funcInd, psyInd
+    Medic_leaving_nbr, Risk.of.falling.006, Destination_rec, funcInd, psyInd, rehosp30
     ) %>%
   summarise(
     as.numeric(mean(OpsFact,na.rm = T) >0), as.numeric(mean(NSARFact,na.rm = T) >0),
@@ -576,16 +628,16 @@ df_gr_full <- df1 %>%
     as.numeric(mean(PsychDis,na.rm = T) >0), as.numeric(mean(AntiCoa,na.rm = T) >0),
     as.numeric(mean(SSRI,na.rm = T) >0), as.numeric(mean(Cortico,na.rm = T) >0),
     as.numeric(mean(PepUlc,na.rm = T) >0), as.numeric(mean(Dementia,na.rm = T) >0),
-    sum(Painmeds, na.rm = T), as.numeric(mean(TumATC, na.rm = T)>0)) 
+    sum(Painmeds, na.rm = T), as.numeric(mean(TumATC, na.rm = T)>0), sum(ACBcalc)) 
 
 
 
 names(df_gr_full) <- c(
   "V1", "PID" ,"Date","Sex", "age", "Rehosp", "CPFact" ,"Stay_length", "MedTot", "FallRisk",
-  "Destination", "funcInd", "psyInd", "OpsFact", "NSARFact", "Paracet", "Metamiz", "Gaba","TCA", "SNRI",
+  "Destination", "funcInd", "psyInd", "rehosp30" ,"OpsFact", "NSARFact", "Paracet", "Metamiz", "Gaba","TCA", "SNRI",
   "Carba", "MRel", "OpsClass","mme", "Hypnotics", "RAAS", "Diur", "Infect", "Inflam",
   "RenalDis", "EndRenDis", "Diabetes", "PulDis", "LiverF", "Transplant", "NeurDis",
-  "CVDis", "ThyrDis", "Gout", "PsychDis", "AntiCoa", "SSRI", "Cortico", "PepUlc", "Dementia", "Painmeds", "TumATC"
+  "CVDis", "ThyrDis", "Gout", "PsychDis", "AntiCoa", "SSRI", "Cortico", "PepUlc", "Dementia", "Painmeds", "TumATC", "ACB"
                        )
 # Delete line of NA's that was introduced in formation of df
 df_gr_full <- df_gr_full[-which(is.na(df_gr_full$V1)),]
@@ -712,25 +764,77 @@ df_gr_full$NSARPep <- as.numeric(
   df_gr_full$NSARFact == 1 & df_gr_full$PepUlc
 )
 
+#any PIM
+
+df_gr_full$PIM <- as.numeric(df_gr_full$OpGab == 1 | df_gr_full$OpHyp == 1 | 
+                               df_gr_full$OpsMRel == 1 | df_gr_full$OpsTCA == 1 |
+                               df_gr_full$NSARPep == 1 | df_gr_full$NSARCV == 1 | df_gr_full$NSARRenal == 1 | 
+                               df_gr_full$NSARCortico == 1 | df_gr_full$NSARSSRI == 1 | df_gr_full$NSARDiur == 1 |
+                               df_gr_full$NSARRAAS == 1 | df_gr_full$NSARAntiCoa == 1 | df_gr_full$whammy == 1)
+
+df_gr_full$PIM_num <- df_gr_full %>% ungroup %>% select(OpGab, OpHyp, OpsMRel, OpsTCA, NSARPep, NSARCV, NSARRenal,
+                      NSARCortico, NSARSSRI, NSARDiur, NSARRAAS, NSARAntiCoa, whammy) %>% rowSums()
 
 # Kaplan Meyer Curve
 df_cncp <- df_gr_full[df_gr_full$CNCPFact == 1,]
 df_cncp$Read90 <- as.numeric(df_cncp$TT_Rehosp <= 90)
+df_cncp$Domicile <- as.numeric(df_cncp$Destination == "Domicile")
+
 surv.obj <- survival::Surv(df_cncp$TT_Rehosp, df_cncp$Censoring)
 survfit2(Surv(TT_Rehosp, Censoring) ~ 1, data = df_cncp) %>%
   ggsurvfit()
 
+# Frequency table of number of readmissions at 30 days
+table(table(df_cncp$rehosp30[df_cncp$rehosp30 == 1], df_cncp$PID[df_cncp$rehosp30 == 1]))
+
 # Events for 30, 60 and 90 days
-survfit(Surv(TT_Rehosp, Censoring) ~ 1, data = df_cncp)
+events <- survfit(Surv(TT_Rehosp, Censoring) ~ 1, data = df_cncp)
+events_no <- summary(events, times = c(30,60,90, 360))$n.event
+times <- summary(events, times = c(30, 60, 90))$surv
+rate <- 1- times[-1]/times[-length(times)]
+
+# person time
+person_time <- diff(c(0, events$time)) * events$n.risk
+total_person_time <- sum(person_time)
+event_rate_30 <- 85/total_person_time
+event_rate_90 <- 309/total_person_time
+event_rate360 <- 664/total_person_time
+
+p30 <- 85/1989
+event_rate_30_2 <- p30/((p30*901) + ((1-p30)*mean_fup))
+p360 <- 664/1989
+event_rate_360_2 <- p360/((p360*901) + ((1-p360)*mean_fup))
+
+
+mean_fup <- mean(events$time)
+
+
+# Estimation of Cox-Snell R^2 == R_cs_app: Donzé
+AUC_lit <- 0.71
+D_est <- 5.50*(AUC_lit-0.5) + 10.26*(AUC_lit-0.5)^3
+R_d2_app <- (pi/8*D_est^2)/(pi^2/6+pi/8*D_est)
+R_oquigley_app <- (-pi^2/6*R_d2_app)/((1-pi^2/6)*R_d2_app-1)
+events_input <- 879/3
+sample_size_input <- 8333/3
+LR <- -events_input*log(1- R_oquigley_app) 
+R_cs_app <- 1 - exp(-LR/sample_size_input)
 
 # Sample size for 30 day readmission
-pmsampsize(type = "b", cstatistic = 0.65, parameters = 2, prevalence = 0.04)
+pmsampsize(type = "b", rsquared = 0.17, parameters = 30, prevalence = 0.065)
 
 # Sample size for 60 day radmission
-pmsampsize(type = "b", cstatistic = 0.65, parameters = 6, prevalence = 0.108)
+pmsampsize(type = "b", cstatistic = 0.65, parameters = 8, prevalence = 0.15)
 
 # Sample size for 90 day readmission
-pmsampsize(type = "b", cstatistic = 0.65, parameters = 8, prevalence = 0.155)
+pmsampsize(type = "b", cstatistic = 0.65, parameters = 10, prevalence = 0.22)
 
-# Sample size for survival analysis
-pmsampsize(type = "b", cstatistic = 0.65, parameters = 15, prevalence = 0.43)
+# Sample size for 360 day readmission
+pmsampsize(type = "b", cstatistic = 0.65, parameters = 22, prevalence = 0.32, shrinkage = 0.85)
+
+# Sample size for survival analysis and 30 days readmission
+pmsampsize(type = "s", rsquared = R_cs_app, timepoint = 30, meanfup = mean_fup,
+           rate = event_rate_30_2, parameters = 18, shrinkage = 0.85)
+
+# Sample size for survival analysis and 360 days readmission
+pmsampsize(type = "s", rsquared = R_cs_app, timepoint = 360, meanfup = 537,
+           rate = event_rate_360_2, parameters = 18, shrinkage = 0.85)
